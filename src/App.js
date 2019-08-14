@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import { Cardlist } from "./components/card-list/card-list.component";
+import { SearchBox } from "./components/search-box/search-box.component";
 
 class App extends Component {
   constructor() {
@@ -17,6 +18,12 @@ class App extends Component {
       .then(users => this.setState({ monsters: users }));
   }
 
+  handleChange = e => {
+    this.setState({ searchField: e.target.value });
+    // Arrow syntax will automatically do the .bind() for us
+    // A good rule of thumb is this: Use arrow functions on any class methods you define and aren't part of React (i.e. render(), componentDidMount()).
+  };
+
   render() {
     const { monsters, searchField } = this.state;
     const filteredMonsters = monsters.filter(monster =>
@@ -24,14 +31,9 @@ class App extends Component {
     );
     return (
       <div className="App">
-        <input
-          type="search"
+        <SearchBox
           placeholder="Search Monsters.."
-          onChange={e => {
-            this.setState({ searchField: e.target.value }, () =>
-              console.log(this.state)
-            );
-          }}
+          handleChange={this.handleChange}
         />
         <Cardlist monsters={filteredMonsters} />
       </div>
