@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://pixelshot.github.io/monsters-rolodex",
   "dependencies": {
+    "eslint-utils": "^1.4.2",
     "gh-pages": "^2.1.1",
     "lodash.template": "^4.5.0",
     "react": "^16.8.6",
